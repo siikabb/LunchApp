@@ -1,0 +1,3 @@
+interface Restaurant {
+  name: string;
+}
