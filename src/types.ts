@@ -1,0 +1,1 @@
+type MenuScope = 'day' | 'week';

@@ -16,10 +16,11 @@ const fetchData = async <T>(
 const restaurants: Restaurant[] = await fetchData(apiUrl + 'restaurants');
 
 restaurants.forEach((restaurant) => {
-  const element = document.getElementById('app');
-  if (element) {
-    const p = document.createElement('p');
-    p.innerText += `${restaurant.name}`;
-    element.appendChild(p);
+  const restaurantTable = document.getElementById('restaurant_table');
+  if (restaurantTable) {
+    restaurantTable.insertAdjacentHTML(
+      'beforeend',
+      `<tr><td>${restaurant.name}</td><td>${restaurant.city}</td><td>${restaurant.company}</td></tr>`
+    );
   }
 });

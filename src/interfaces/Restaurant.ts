@@ -1,3 +1,5 @@
 interface Restaurant {
-  name: string;
+  name?: string;
+  city?: string;
+  company?: string;
 }
