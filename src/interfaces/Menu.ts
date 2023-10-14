@@ -1,0 +1,3 @@
+interface Menu {
+  courses?: string[];
+}

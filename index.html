@@ -5,16 +5,26 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + TS</title>
+  <title>LunchApp</title>
+  <link rel="stylesheet" href="src/style.css">
 </head>
 
 <body>
   <div id="app"></div>
+  <div id="menu">
+    <table id="menu_table">
+      <tr>
+        <th>Ruokalaji</th>
+        <th>Hinta</th>
+        <th>Ruokavalio</th>
+      </tr>
+    </table>
+  </div>
   <table id="restaurant_table">
     <tr>
-      <th>Name</th>
-      <th>City</th>
-      <th>Company</th>
+      <th>Nimi</th>
+      <th>Kaupunki</th>
+      <th>Yritys</th>
     </tr>
   </table>
   <script type="module" src="/src/main.ts"></script>
