@@ -28,8 +28,8 @@ restaurants.forEach((restaurant) => {
 
     // add a click listener to the table row to fetch the menu for the restaurant
     tr.addEventListener('click', async () => {
-      if (restaurantModal) {
-        restaurantModal.style.display = 'block';
+      if (menuTable) {
+        menuTable.innerHTML = `<tr><th>Ruokalaji</th><th>Hinta</th><th>Ruokavalio</th></tr>`;
       }
       if (menuScope === 'day') {
         const menuItems: Menu = await fetchData(
@@ -66,13 +66,16 @@ restaurants.forEach((restaurant) => {
           });
         });
       }
+      if (restaurantModal) {
+        restaurantModal.style.display = 'block';
+      }
     });
   }
 });
 
+const menuTable = document.getElementById('menu-table');
 // add a row to the menu table
 const updateMenu = (course: Course) => {
-  const menuTable = document.getElementById('menu-table');
   const element = document.createElement('tr');
   element.classList.add('menu-row');
   element.insertAdjacentHTML(
