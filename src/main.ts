@@ -1,5 +1,5 @@
 import './style.css';
-import {apiUrl, menuScope} from './variables';
+import {apiUrl} from './variables';
 
 const fetchData = async <T>(
   url: string,
@@ -13,6 +13,8 @@ const fetchData = async <T>(
   return json;
 };
 
+let menuScope: MenuScope = 'week';
+let currentRestaurant: Restaurant;
 const restaurants: Restaurant[] = await fetchData(apiUrl + 'restaurants');
 
 // fetch the list of restaurants from the API and add them to the table
@@ -28,44 +30,8 @@ restaurants.forEach((restaurant) => {
 
     // add a click listener to the table row to fetch the menu for the restaurant
     tr.addEventListener('click', async () => {
-      if (menuTable) {
-        menuTable.innerHTML = `<tr><th>Ruokalaji</th><th>Hinta</th><th>Ruokavalio</th></tr>`;
-      }
-      if (menuScope === 'day') {
-        const menuItems: Menu = await fetchData(
-          apiUrl + `restaurants/daily/${restaurant._id}/fi`
-        );
-        menuItems.courses?.forEach((course) =>
-          updateMenu(course as unknown as Course)
-        );
-        console.log(menuItems);
-      } else if (menuScope === 'week') {
-        const days: Record<string, unknown> = await fetchData(
-          apiUrl + `restaurants/weekly/${restaurant._id}/fi`
-        );
-        const daysArray = Object.entries(days);
-        console.log(daysArray);
-        daysArray.forEach((day) => {
-          const coursesArray = Object.entries(
-            day[1] as Record<string, unknown>
-          );
-          console.log(coursesArray);
-          coursesArray.forEach((course) => {
-            const coursesObject = course[1] as Record<string, unknown>;
-            const date = coursesObject.date as string;
-            const menuTable = document.getElementById('menu-table');
-            const element = document.createElement('tr');
-            element.insertAdjacentHTML(
-              'beforeend',
-              `<td colspan="3" class="table-date">${date}</td>`
-            );
-            menuTable?.appendChild(element);
-            console.log(date);
-            const courses = coursesObject.courses as Course[];
-            courses.forEach((course) => updateMenu(course));
-          });
-        });
-      }
+      currentRestaurant = restaurant;
+      switchMenuContent(restaurant);
       if (restaurantModal) {
         restaurantModal.style.display = 'block';
       }
@@ -100,3 +66,60 @@ if (closeModal) {
     }
   });
 }
+
+// update content of the menu according to the type of menu selected
+const switchMenuContent = async (restaurant: Restaurant) => {
+  if (menuTable) {
+    menuTable.innerHTML = `<tr><th>Ruokalaji</th><th>Hinta</th><th>Ruokavalio</th></tr>`;
+  }
+  if (menuScope === 'day') {
+    const menuItems: Menu = await fetchData(
+      apiUrl + `restaurants/daily/${restaurant._id}/fi`
+    );
+    menuItems.courses?.forEach((course) =>
+      updateMenu(course as unknown as Course)
+    );
+    console.log(menuItems);
+  } else if (menuScope === 'week') {
+    const days: Record<string, unknown> = await fetchData(
+      apiUrl + `restaurants/weekly/${restaurant._id}/fi`
+    );
+    const daysArray = Object.entries(days);
+    console.log(daysArray);
+    daysArray.forEach((day) => {
+      const coursesArray = Object.entries(day[1] as Record<string, unknown>);
+      console.log(coursesArray);
+      coursesArray.forEach((course) => {
+        const coursesObject = course[1] as Record<string, unknown>;
+        const date = coursesObject.date as string;
+        const menuTable = document.getElementById('menu-table');
+        const element = document.createElement('tr');
+        element.insertAdjacentHTML(
+          'beforeend',
+          `<td colspan="3" class="table-date">${date}</td>`
+        );
+        menuTable?.appendChild(element);
+        console.log(date);
+        const courses = coursesObject.courses as Course[];
+        courses.forEach((course) => updateMenu(course));
+      });
+    });
+  }
+};
+
+// make the menu scope buttons work
+const weeklyButton = document.getElementById('weekly-button');
+const dailyButton = document.getElementById('daily-button');
+weeklyButton?.addEventListener('click', () => {
+  menuScope = 'week';
+  switchMenuContent(currentRestaurant);
+  weeklyButton?.setAttribute('disabled', '');
+  dailyButton?.removeAttribute('disabled');
+});
+
+dailyButton?.addEventListener('click', () => {
+  menuScope = 'day';
+  switchMenuContent(currentRestaurant);
+  dailyButton?.setAttribute('disabled', '');
+  weeklyButton?.removeAttribute('disabled');
+});
