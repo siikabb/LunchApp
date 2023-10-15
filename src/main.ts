@@ -1,5 +1,5 @@
 import './style.css';
-import {apiUrl} from './variables';
+import {apiUrl, menuScope} from './variables';
 
 const fetchData = async <T>(
   url: string,
@@ -25,13 +25,32 @@ restaurants.forEach((restaurant) => {
     );
     restaurantTable.appendChild(tr);
     tr.addEventListener('click', async () => {
-      const menuItems: Menu = await fetchData(
-        apiUrl + `restaurants/daily/${restaurant._id}/fi`
-      );
-      menuItems.courses?.forEach((course) =>
-        updateMenu(course as unknown as Course)
-      );
-      console.log(menuItems);
+      if (menuScope === 'day') {
+        const menuItems: Menu = await fetchData(
+          apiUrl + `restaurants/daily/${restaurant._id}/fi`
+        );
+        menuItems.courses?.forEach((course) =>
+          updateMenu(course as unknown as Course)
+        );
+        console.log(menuItems);
+      } else if (menuScope === 'week') {
+        const days: Record<string, unknown> = await fetchData(
+          apiUrl + `restaurants/weekly/${restaurant._id}/fi`
+        );
+        const daysArray = Object.entries(days);
+        console.log(daysArray);
+        daysArray.forEach((day) => {
+          const coursesArray = Object.entries(
+            day[1] as Record<string, unknown>
+          );
+          console.log(coursesArray);
+          coursesArray.forEach((course) => {
+            const coursesObject = course[1] as Record<string, unknown>;
+            const courses = coursesObject.courses as Course[];
+            courses.forEach((course) => updateMenu(course));
+          });
+        });
+      }
     });
   }
 });

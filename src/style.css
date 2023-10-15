@@ -11,7 +11,7 @@ main {
 }
 
 #menu {
-  display: none;
+  /* display: none; */
 }
 
 #restaurant_table {
@@ -32,4 +32,8 @@ main {
 
 #restaurant_table tr:hover {
   background: #ccc;
+}
+
+#restaurant_table td:hover {
+  cursor: pointer;
 }
