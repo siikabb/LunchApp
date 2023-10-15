@@ -46,6 +46,15 @@ restaurants.forEach((restaurant) => {
           console.log(coursesArray);
           coursesArray.forEach((course) => {
             const coursesObject = course[1] as Record<string, unknown>;
+            const date = coursesObject.date as string;
+            const menuTable = document.getElementById('menu-table');
+            const element = document.createElement('tr');
+            element.insertAdjacentHTML(
+              'beforeend',
+              `<td colspan="3" class="table-date">${date}</td>`
+            );
+            menuTable?.appendChild(element);
+            console.log(date);
             const courses = coursesObject.courses as Course[];
             courses.forEach((course) => updateMenu(course));
           });
@@ -56,8 +65,9 @@ restaurants.forEach((restaurant) => {
 });
 
 const updateMenu = (course: Course) => {
-  const menuTable = document.getElementById('menu_table');
+  const menuTable = document.getElementById('menu-table');
   const element = document.createElement('tr');
+  element.classList.add('menu-row');
   element.insertAdjacentHTML(
     'beforeend',
     `<td>${course.name}</td><td>${course.price}</td><td>${course.diets}</td>`

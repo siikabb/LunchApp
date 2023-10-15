@@ -11,7 +11,19 @@ main {
 }
 
 #menu {
-  /* display: none; */
+  display: none;
+}
+
+#menu-table {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+#menu-table td,
+#menu-table th {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
 }
 
 #restaurant_table {
@@ -36,4 +48,15 @@ main {
 
 #restaurant_table td:hover {
   cursor: pointer;
+}
+
+.menu-row:nth-child(even) {
+  background: #ddd;
+}
+
+.table-date {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 3px 0;
 }
