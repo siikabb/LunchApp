@@ -15,6 +15,7 @@ const fetchData = async <T>(
 
 const restaurants: Restaurant[] = await fetchData(apiUrl + 'restaurants');
 
+// fetch the list of restaurants from the API and add them to the table
 restaurants.forEach((restaurant) => {
   const restaurantTable = document.getElementById('restaurant_table');
   if (restaurantTable) {
@@ -24,7 +25,12 @@ restaurants.forEach((restaurant) => {
       `<td>${restaurant.name}</td><td>${restaurant.city}</td><td>${restaurant.company}</td>`
     );
     restaurantTable.appendChild(tr);
+
+    // add a click listener to the table row to fetch the menu for the restaurant
     tr.addEventListener('click', async () => {
+      if (restaurantModal) {
+        restaurantModal.style.display = 'block';
+      }
       if (menuScope === 'day') {
         const menuItems: Menu = await fetchData(
           apiUrl + `restaurants/daily/${restaurant._id}/fi`
@@ -64,6 +70,7 @@ restaurants.forEach((restaurant) => {
   }
 });
 
+// add a row to the menu table
 const updateMenu = (course: Course) => {
   const menuTable = document.getElementById('menu-table');
   const element = document.createElement('tr');
@@ -78,3 +85,15 @@ const updateMenu = (course: Course) => {
     menuElement.style.display = 'block';
   }
 };
+
+const restaurantModal = document.getElementById('restaurant-modal');
+
+// add a click listener to the close button of the modal
+const closeModal = document.getElementById('close-modal');
+if (closeModal) {
+  closeModal.addEventListener('click', () => {
+    if (restaurantModal) {
+      restaurantModal.style.display = 'none';
+    }
+  });
+}
