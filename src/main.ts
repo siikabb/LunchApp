@@ -19,7 +19,7 @@ const restaurants: Restaurant[] = await fetchData(apiUrl + 'restaurants');
 
 // fetch the list of restaurants from the API and add them to the table
 restaurants.forEach((restaurant) => {
-  const restaurantTable = document.getElementById('restaurant_table');
+  const restaurantTable = document.getElementById('restaurant-table');
   if (restaurantTable) {
     const tr = document.createElement('tr');
     tr.insertAdjacentHTML(
@@ -67,8 +67,24 @@ if (closeModal) {
   });
 }
 
+const restaurantInfo = document.getElementById('restaurant-info');
 // update content of the menu according to the type of menu selected
 const switchMenuContent = async (restaurant: Restaurant) => {
+  // insert infos of the current restaurant into the modal
+  const restaurantName = restaurant.name || '';
+  const address = restaurant.address || '';
+  const postalCode = restaurant.postalCode || '';
+  const city = restaurant.city || '';
+  const phone = restaurant.phone || '';
+  const infoArray: string[] = [
+    restaurantName,
+    address,
+    postalCode,
+    city,
+    phone,
+  ];
+  updateRestaurantInfo(infoArray);
+
   if (menuTable) {
     menuTable.innerHTML = `<tr><th>Ruokalaji</th><th>Hinta</th><th>Ruokavalio</th></tr>`;
   }
@@ -123,3 +139,14 @@ dailyButton?.addEventListener('click', () => {
   dailyButton?.setAttribute('disabled', '');
   weeklyButton?.removeAttribute('disabled');
 });
+
+const updateRestaurantInfo = (infoArray: string[]) => {
+  if (restaurantInfo) {
+    restaurantInfo.innerHTML = '';
+    infoArray.forEach((infoItem) => {
+      const infoElement = document.createElement('p');
+      infoElement.insertAdjacentHTML('beforeend', infoItem);
+      restaurantInfo.appendChild(infoElement);
+    });
+  }
+};
