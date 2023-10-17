@@ -34,6 +34,7 @@ restaurants.forEach((restaurant) => {
       switchMenuContent(restaurant);
       if (restaurantModal) {
         restaurantModal.style.display = 'block';
+        htmlBody?.style.setProperty('overflow', 'hidden');
       }
     });
   }
@@ -56,6 +57,8 @@ const updateMenu = (course: Course) => {
 };
 
 const restaurantModal = document.getElementById('restaurant-modal');
+const htmlMain = document.querySelector('main');
+const htmlBody = document.querySelector('body');
 
 // add a click listener to the close button of the modal
 const closeModal = document.getElementById('close-modal');
@@ -63,6 +66,7 @@ if (closeModal) {
   closeModal.addEventListener('click', () => {
     if (restaurantModal) {
       restaurantModal.style.display = 'none';
+      htmlBody?.style.setProperty('overflow', 'auto');
     }
   });
 }

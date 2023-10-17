@@ -112,6 +112,7 @@ table {
 #restaurant-table tr:not(:first-child):hover {
   cursor: pointer;
   background: var(--primary);
+  color: var(--dark);
   /* box-shadow: 0 0 10px var(--complementary); */
 }
 
@@ -133,6 +134,7 @@ table {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  border-radius: 1rem;
 }
 
 #close-modal {
@@ -228,7 +230,7 @@ table {
   color: var(--light);
 }
 
-#dark-icon {
+#light-icon {
   display: none;
 }
 
