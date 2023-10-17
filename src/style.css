@@ -7,7 +7,7 @@
   --dark: #333;
   --light: #f1f1f1;
   --med-light: #ccc;
-  --med-dark: #999;
+  --med-dark: #666;
 }
 
 body {
@@ -43,8 +43,10 @@ header a {
 }
 
 #logo-text {
+  display: flex;
+  /* width: min-content; */
   padding: 0.5rem;
-  flex: 1;
+  /* flex: 1; */
   font-family: 'Josefin Sans', 'Poppins', sans-serif;
 }
 
@@ -71,25 +73,40 @@ main {
   box-shadow: 0 5px 10px var(--dark);
 }
 
+table {
+  /* border: 1px solid var(--med-dark); */
+}
+
 #menu {
   display: none;
 }
 
 #restaurant-table {
   width: 100%;
-  border: 1px solid var(--med-dark);
+  /* border: 1px solid var(--med-dark); */
   border-collapse: collapse;
   background: var(--light);
 }
 
 #restaurant-table td,
 #restaurant-table th {
-  border: 1px solid var(--med-dark);
+  /* border: 1px solid var(--med-dark); */
   padding: 0.5rem;
 }
 
 #restaurant-table tr:nth-child(even) {
-  background: var(--med-light);
+  background: var(--med-dark);
+  color: var(--light);
+}
+
+/* #restaurant-table tr:nth-child(odd) {
+  background: var(--med-dark);
+  color: var(--light);
+} */
+
+#restaurant-table tr:first-child {
+  background-color: var(--light);
+  color: var(--dark);
 }
 
 #restaurant-table tr:not(:first-child):hover {
@@ -120,10 +137,12 @@ main {
 
 #close-modal {
   position: fixed;
-  right: 10px;
-  top: 0;
+  right: 20px;
+  top: 10px;
   font-size: 2rem;
   cursor: pointer;
+  color: var(--primary-medium);
+  text-shadow: 0 0 10px var(--primary-dark);
 }
 
 #menu-scope-buttons {
@@ -166,9 +185,9 @@ main {
 
 #menu-table {
   width: 100%;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-collapse: collapse;
-  background: #fff;
+  background: var(--light);
   /* margin: 0 0 1rem 0; */
 }
 
@@ -178,7 +197,6 @@ main {
 
 #menu-table td,
 #menu-table th {
-  border: 1px solid #ccc;
   padding: 0.5rem;
 }
 
@@ -188,8 +206,74 @@ main {
   font-size: 1.5rem;
   margin: 3px 0;
   background-color: var(--primary);
+  text-transform: capitalize;
 }
 
 .menu-row:nth-child(even) {
-  background: #ddd;
+  background: var(--med-light);
+}
+
+#dark-toggle {
+  border: none;
+  background: none;
+}
+
+#dark-toggle:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px var(--complementary);
+}
+
+#dark-toggle i {
+  font-size: 2rem;
+  color: var(--light);
+}
+
+#dark-icon {
+  display: none;
+}
+
+body.dark {
+  color: var(--light);
+  background-color: var(--primary-dark);
+}
+
+body.dark main {
+  background-color: var(--dark);
+}
+
+body.dark #restaurant-table {
+  background-color: var(--dark);
+}
+
+body.dark #restaurant-table tr:nth-child(even) {
+  background: var(--med-dark);
+}
+
+body.dark #restaurant-table tr:first-child {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+body.dark #restaurant-table tr:not(:first-child):hover {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+body.dark #modal-content {
+  background: var(--dark);
+  color: var(--light);
+}
+
+body.dark #menu-table {
+  background: var(--dark);
+}
+
+body.dark #menu-table tr:nth-child(even) {
+  background: var(--med-dark);
+}
+
+body.dark #menu-table tr:first-child,
+body.dark .table-date,
+body.dark #restaurant-modal button {
+  color: var(--dark);
 }

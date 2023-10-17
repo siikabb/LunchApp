@@ -12,17 +12,22 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
+  <script src="https://kit.fontawesome.com/77d6242021.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <header>
-    <h1 id="logo-text"><a href="#restaurant-table"><span id="logo-lunch">Lunch</span><span id="logo-app">App</span></a>
+    <h1 id="logo-text"><a href="#"><span id="logo-lunch">Lunch</span><span id="logo-app">App</span></a>
     </h1>
+    <button id="dark-toggle">
+      <i class="fa-solid fa-sun" id="light-icon"></i>
+      <i class="fa-solid fa-moon" id="dark-icon"></i>
+    </button>
     <nav></nav>
   </header>
   <main>
-    <div id="restaurant-modal"><span id="close-modal">x</span>
-      <div id="modal-content">
+    <div id="restaurant-modal">
+      <div id="modal-content"><span id="close-modal"><i class="fa-solid fa-circle-xmark"></i></span>
         <div id="restaurant-info"></div>
         <div id="menu-scope-buttons">
           <button id="daily-button" type="button">Päivän menu</button>

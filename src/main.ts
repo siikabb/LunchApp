@@ -150,3 +150,20 @@ const updateRestaurantInfo = (infoArray: string[]) => {
     });
   }
 };
+
+const darkToggle = document.getElementById('dark-toggle');
+darkToggle?.addEventListener('click', () => {
+  const body = document.body;
+  const darkIcon = document.getElementById('dark-icon');
+  const lightIcon = document.getElementById('light-icon');
+  body.classList.toggle('dark');
+  if (darkIcon && lightIcon) {
+    if (body.classList.contains('dark')) {
+      darkIcon.style.display = 'none';
+      lightIcon.style.display = 'block';
+    } else {
+      darkIcon.style.display = 'block';
+      lightIcon.style.display = 'none';
+    }
+  }
+});
