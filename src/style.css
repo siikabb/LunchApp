@@ -14,14 +14,23 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
-  background: #f1f1f1;
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark);
+  background: var(--primary);
 }
 
 header {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: var(--dark);
+  height: 4rem;
+  z-index: 1;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 5px 10px var(--dark);
 }
 
 header * {
@@ -35,6 +44,8 @@ header a {
 
 #logo-text {
   padding: 0.5rem;
+  flex: 1;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
 }
 
 #logo-text:hover {
@@ -51,8 +62,13 @@ header a {
 }
 
 main {
-  margin: 2rem auto;
+  margin: 4rem auto 4rem auto;
   width: 90%;
+  background-color: var(--light);
+  padding: 1rem;
+  border: 1px solid var(--med-dark);
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 5px 10px var(--dark);
 }
 
 #menu {
@@ -61,26 +77,25 @@ main {
 
 #restaurant-table {
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid var(--med-dark);
   border-collapse: collapse;
+  background: var(--light);
 }
 
 #restaurant-table td,
 #restaurant-table th {
-  border: 1px solid #ccc;
+  border: 1px solid var(--med-dark);
   padding: 0.5rem;
 }
 
 #restaurant-table tr:nth-child(even) {
-  background: #ddd;
+  background: var(--med-light);
 }
 
-#restaurant-table tr:hover {
-  background: #ccc;
-}
-
-#restaurant-table td:hover {
+#restaurant-table tr:not(:first-child):hover {
   cursor: pointer;
+  background: var(--primary);
+  /* box-shadow: 0 0 10px var(--complementary); */
 }
 
 #restaurant-modal {
@@ -117,12 +132,48 @@ main {
   margin: 1rem 0;
 }
 
+#restaurant-info p {
+  margin: 0;
+}
+
+#menu-scope-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 0 0;
+}
+
+#menu-scope-buttons button {
+  padding: 0.5rem;
+  border: none;
+  /* border: 1px solid var(--med-dark); */
+  /* border-bottom: none; */
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-family: inherit;
+  background-color: var(--primary-dark);
+  color: var(--light);
+}
+
+#menu-scope-buttons button:hover {
+  cursor: pointer;
+  background-color: var(--primary-medium);
+}
+
+#menu-scope-buttons button:disabled {
+  background-color: var(--primary);
+  color: var(--dark);
+  cursor: default;
+}
+
 #menu-table {
-  /* width: 80%; */
+  width: 100%;
   border: 1px solid #ccc;
   border-collapse: collapse;
   background: #fff;
-  margin: 20px auto;
+  /* margin: 0 0 1rem 0; */
+}
+
+#menu-table tr:first-child {
+  background-color: var(--primary);
 }
 
 #menu-table td,
@@ -136,6 +187,7 @@ main {
   text-align: center;
   font-size: 1.5rem;
   margin: 3px 0;
+  background-color: var(--primary);
 }
 
 .menu-row:nth-child(even) {
