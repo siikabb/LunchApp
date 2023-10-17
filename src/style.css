@@ -74,7 +74,7 @@ main {
 }
 
 table {
-  /* border: 1px solid var(--med-dark); */
+  table-layout: fixed;
 }
 
 #menu {
@@ -278,4 +278,37 @@ body.dark #menu-table tr:first-child,
 body.dark .table-date,
 body.dark #restaurant-modal button {
   color: var(--dark);
+}
+
+@media (max-width: 600px) {
+  main {
+    width: 100%;
+    border: 0;
+    padding: 0;
+    box-shadow: 0 0 0;
+  }
+
+  table th,
+  table td {
+    /* white-space: nowrap; */
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #modal-content {
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  #restaurant-info {
+    padding: 1rem;
+  }
+
+  #menu-table {
+    margin: 0;
+  }
 }
