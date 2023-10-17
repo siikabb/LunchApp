@@ -13,7 +13,10 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,jpg,svg}'],
+        globPatterns: [
+          '**/*.{js,css,html,png,jpg,svg}',
+          'src/*.{js,css,html,png,jpg,svg}',
+        ],
       },
       manifest: {
         name: 'LunchApp',
