@@ -47,7 +47,9 @@ const updateMenu = (course: Course) => {
   element.classList.add('menu-row');
   element.insertAdjacentHTML(
     'beforeend',
-    `<td>${course.name}</td><td>${course.price}</td><td>${course.diets}</td>`
+    `<td>${course.name ?? '?'}</td><td class="td-price">${
+      course.price ?? '?'
+    }</td><td class="td-diets">${course.diets ?? '?'}</td>`
   );
   menuTable?.appendChild(element);
   const menuElement = document.getElementById('menu');

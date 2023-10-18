@@ -63,6 +63,14 @@ header a {
   color: var(--light);
 }
 
+#logo-text:active #logo-lunch {
+  color: var(--primary-dark);
+}
+
+#logo-text:active #logo-app {
+  color: var(--complementary-dark);
+}
+
 main {
   margin: 4rem auto 4rem auto;
   width: 90%;
@@ -97,11 +105,12 @@ table {
 #restaurant-table tr:nth-child(even) {
   background: var(--med-dark);
   color: var(--light);
+  /* z-index: 1; */
 }
 
 /* #restaurant-table tr:nth-child(odd) {
-  background: var(--med-dark);
-  color: var(--light);
+  background: var(--light);
+  color: var(--dark);
 } */
 
 #restaurant-table tr:first-child {
@@ -110,10 +119,12 @@ table {
 }
 
 #restaurant-table tr:not(:first-child):hover {
+  position: relative;
   cursor: pointer;
   background: var(--primary);
   color: var(--dark);
-  /* box-shadow: 0 0 10px var(--complementary); */
+  box-shadow: 0 0 10px var(--complementary);
+  /* z-index: 2; */
 }
 
 #restaurant-modal {
@@ -129,10 +140,10 @@ table {
 }
 
 #modal-content {
-  background: #fff;
+  background: var(--light);
   margin: 40px auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid var(--med-dark);
   width: 80%;
   border-radius: 1rem;
 }
@@ -143,8 +154,13 @@ table {
   top: 10px;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--primary-medium);
+  color: var(--primary);
   text-shadow: 0 0 10px var(--primary-dark);
+}
+
+#close-modal:hover {
+  color: var(--primary-medium);
+  text-shadow: 0 0 10px var(--complementary-dark);
 }
 
 #menu-scope-buttons {
@@ -202,6 +218,11 @@ table {
   padding: 0.5rem;
 }
 
+.td-price,
+.td-diets {
+  text-align: center;
+}
+
 .table-date {
   width: 100%;
   text-align: center;
@@ -228,6 +249,10 @@ table {
 #dark-toggle i {
   font-size: 2rem;
   color: var(--light);
+}
+
+#dark-toggle:active i {
+  color: var(--complementary-dark);
 }
 
 #light-icon {
@@ -257,7 +282,7 @@ body.dark #restaurant-table tr:first-child {
 }
 
 body.dark #restaurant-table tr:not(:first-child):hover {
-  background: var(--primary);
+  background: var(--primary-medium);
   color: var(--dark);
 }
 
@@ -276,8 +301,22 @@ body.dark #menu-table tr:nth-child(even) {
 
 body.dark #menu-table tr:first-child,
 body.dark .table-date,
-body.dark #restaurant-modal button {
+body.dark #restaurant-modal button:disabled {
   color: var(--dark);
+  background-color: var(--primary-medium);
+}
+
+body.dark #restaurant-modal button:enabled {
+  background-color: var(--primary);
+  color: var(--dark);
+}
+
+body.dark #close-modal {
+  color: var(--primary-medium);
+}
+
+body.dark #close-modal:hover {
+  color: var(--primary-dark);
 }
 
 @media (max-width: 600px) {
@@ -286,6 +325,7 @@ body.dark #restaurant-modal button {
     border: 0;
     padding: 0;
     box-shadow: 0 0 0;
+    margin-bottom: 0;
   }
 
   table th,
