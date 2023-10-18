@@ -57,7 +57,7 @@ const updateMenu = (course: Course) => {
 };
 
 const restaurantModal = document.getElementById('restaurant-modal');
-const htmlMain = document.querySelector('main');
+// const htmlMain = document.querySelector('main');
 const htmlBody = document.querySelector('body');
 
 // add a click listener to the close button of the modal

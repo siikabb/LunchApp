@@ -5,7 +5,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-  base: './',
+  base: '',
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
@@ -13,10 +13,7 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
-        globPatterns: [
-          '**/*.{js,css,html,png,jpg,svg}',
-          'src/*.{js,css,html,png,jpg,svg}',
-        ],
+        globPatterns: ['**/*.{js,css,html,png,jpg,svg}'],
       },
       manifest: {
         name: 'LunchApp',
